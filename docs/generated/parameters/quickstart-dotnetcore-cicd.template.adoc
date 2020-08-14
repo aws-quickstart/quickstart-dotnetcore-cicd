@@ -1,0 +1,22 @@
+
+.GitHub configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|GitHub repository name
+(`GitHubRepositoryName`)|`quickstart-microsoft-dotnetcore-cicd`|GitHub repository name|Git branch
+(`GitHubBranchName`)|`master`|GitHub branch name|GitHub username
+(`GitHubOwner`)|`**__Requires input__**`|UserName for GitHUb|GitHub oauth token
+(`GitHubOAuthToken`)|`**__Requires input__**`|OAuthToken for GitHUb
+|===
+.Elastic Beanstalk configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Elastic Beanstalk platform version
+(`SolutionStack`)|`64bit Amazon Linux 2 v2.0.1 running .NET Core`|The platform version for the .Net Elastic Beantalk environment, please check documentation for latest platform version.
+|===
+.CodeBuild configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|CodeBuild image
+(`CodeBuildImage`)|`aws/codebuild/amazonlinux2-x86_64-standard:3.0`|The image version to use for CodeBuild, please check documentation for latest version
+|===

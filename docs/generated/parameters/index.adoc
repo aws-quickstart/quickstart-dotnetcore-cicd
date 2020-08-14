@@ -1,1 +1,3 @@
-// placeholder
+
+=== Launch a CI/CD pipeline
+include::quickstart-dotnetcore-cicd.template.adoc[]
