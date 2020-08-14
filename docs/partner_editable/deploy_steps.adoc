@@ -19,6 +19,46 @@ This Quick Start requires a subscription to the AMI for {partner-product-name} i
 endif::marketplace_subscription[]
 // \Not to be edited
 
+=== Fork the GitHub repository
+
+1.  Fork the GitHub repository: https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd
+2.  The repository consists of:
+
+* The quickstart-dotnetcore-cicd.yml AWS CloudFormation template
+* BuildSpec.yml, used in CodeBuild
+* Application source code
+
+3. Obtain the needed inputs to use later in the installation:
+
+[cols="",options="header",]
+|===================================================================================
+|GitHub details—provide details of your forked GitHub repository
+a|
+GitHubOAuthToken:
+
+* Go to https://github.com/settings/tokens/new.
+* Type “.NET Core CI/CD” in the Note field.
+* Check the repo box.
+* Check the admin:repo_hook box.
+* Select Generate token.
+
+a|
+GitHubOwner:
+
+* Your GitHub login user name.
+
+a|
+GitHubRepositoryName:
+
+* The name of the forked repository from the first step.
+
+a|
+GitHubBranchName:
+
+* The branch name that you want to use in your fork to trigger the AWS CodePipeline.
+
+|===================================================================================
+
 === Launch the Quick Start
 
 NOTE: You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There is no additional cost for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.

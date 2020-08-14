@@ -1,4 +1,4 @@
-Deploying this Quick Start for a new virtual private cloud (VPC) with
+Deploying this Quick Start with
 *default parameters* builds the following _{partner-product-name}_ environment in the
 AWS Cloud.
 
@@ -10,21 +10,17 @@ image::../images/architecture_diagram.png[Architecture,width=648,height=439]
 
 As shown in Figure 1, the Quick Start sets up the following:
 
-* A highly available architecture that spans two Availability Zones.*
-* A VPC configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*
+* An S3 bucket for holding artifacts.
+* An Elastic Beanstalk environment that acts as the target for application code deployments.
+* An AWS CodePipeline with source, build, and deploy stages.
 
-In the public subnets:
+As a prerequisite, AWS CloudFormation creates an AWS Elastic Beanstalk application and environment that acts as a target for deploying the latest application. AWS Elastic Beanstalk https://aws.amazon.com/about-aws/whats-new/2020/06/aws-elastic-beanstalk-announces-net-core-on-linux-platform/[now supports .NET Core] on Linux platform
 
-* Managed network address translation (NAT) gateways to allow outbound
-internet access for resources in the private subnets.*
-* A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to EC2 instances in public and private subnets.*
+AWS CloudFormation then creates an AWS CodePipeline with three stages: source, build, and deploy.
 
-In the private subnets:
-// Add bullet points for any additional components that are included in the deployment. Make sure that the additional components are also represented in the architecture diagram.
-* <describe any additional components>.
+The source stage invokes CodePipeline every time there is a code change in the configured GitHub repository branch. This stage configures GitHub, which integrates the application source code via webhooks. It then fetches the latest GitHub code and places it in an Amazon Simple Storage Service (Amazon S3) bucket. The resulting source code is placed in the Source Artifacts folder.
 
-*The template that deploys the Quick Start into an existing VPC skips
-the components marked by asterisks and prompts you for your existing VPC
-configuration.
+The build stage of CodePipeline triggers AWS CodeBuild, which fetches the source code from S3 and uses the CodeBuild provided Amazon Linux Docker image for .NET Core to compile the latest source code using the steps provided in associated BuildSpec.yml file. The resulting build package is placed in the Build Artifacts folder in the S3 bucket.
+
+Finally, the deploy stage of CodePipeline triggers AWS CodeDeploy to fetch the build package from the S3 bucket and deploys it to the Elastic Beanstalk environment.
+

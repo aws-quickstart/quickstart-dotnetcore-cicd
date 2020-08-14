@@ -3,12 +3,10 @@
 |Resource |This deployment uses
 
 // Space needed to maintain table headers
-|VPCs |<n>
-|Elastic IP addresses |<n>
-|AWS Identity and Access Management (IAM) security groups |<n>
-|IAM roles |<n>
-|Auto Scaling groups |<n>
-|Application Load Balancers |<n>
-|Network Load Balancers |<n>
-|<type> instances |<n>
+|IAM roles |3
+|S3 buckets |2
+|Elastic Beanstalk environments |1
+|Elastic Beanstalk applications |1
+|CodeBuild projects |1
+|CodePipeline pipelines |1
 |===
