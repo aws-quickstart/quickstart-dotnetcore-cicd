@@ -1,5 +1,38 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This Quick Start deploys CodeBuild, CodePipeline and CodeDeploy for .NET Core (qs-1r1rte3gi)
+Metadata:
+  QuickStartDocumentation:
+    EntrypointName: "Launch a CI/CD pipeline"
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: GitHub configuration
+        Parameters:
+          - GitHubRepositoryName
+          - GitHubBranchName
+          - GitHubOwner
+          - GitHubOAuthToken
+      - Label:
+          default: Elastic Beanstalk configuration
+        Parameters:
+          - SolutionStack
+      - Label:
+          default: CodeBuild configuration
+        Parameters:
+          - CodeBuildImage
+    ParameterLabels:
+      GitHubRepositoryName:
+        default: GitHub repository name
+      GitHubBranchName:
+        default: Git branch
+      GitHubOwner:
+        default: GitHub username
+      GitHubOAuthToken:
+        default: GitHub oauth token
+      SolutionStack:
+        default: Elastic Beanstalk platform version
+      CodeBuildImage:
+        default: CodeBuild image
 Parameters:
   GitHubRepositoryName:
     Type: String
@@ -262,6 +295,7 @@ Resources:
                       - 's3:GetObjectVersion'
                       - 's3:GetBucketAcl'
                       - 's3:GetBucketLocation'
+                      - 's3:ListObject'
   EBInstanceProfileRole:
     Type: 'AWS::IAM::Role'
     Properties:
