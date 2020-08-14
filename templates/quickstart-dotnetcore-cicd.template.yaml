@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: This Quick Start deploys CodeBuild, CodePipeline and CodeDeploy for .NET Core
+Description: This Quick Start deploys CodeBuild, CodePipeline and CodeDeploy for .NET Core (qs-1r1rte3gi)
 Parameters:
   GitHubRepositoryName:
     Type: String
