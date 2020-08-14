@@ -1,0 +1,13 @@
+// Replace the content in <>
+// Briefly describe the software. Use consistent and clear branding. 
+// Include the benefits of using the software on AWS, and provide details on usage scenarios.
+
+This Quick Start provides an end-to-end automated CI/CD environment.
+
+This solution will benefit organizations that want to automate their .NET Core application release pipelines. It provides fully managed and reliable application updates using AWS CodePipeline, AWS CodeBuild, and AWS CodeDeploy. Whenever code is modified within a configured GitHub repository branch, the deployment pipeline automatically builds the code using AWS CodeBuild and deploys the .NET Core application to AWS Elastic Beanstalk.
+
+After deploying the Quick Start, you can use it to:
+
+* Fetch the latest source code and save it to a source artifact store.
+* Automatically build the application.
+* Deploy the application to the target environment.

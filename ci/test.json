@@ -1,0 +1,26 @@
+[
+  {
+    "ParameterKey": "GitHubRepositoryName",
+    "ParameterValue": "quickstart-dotnet-serverless-cicd"
+  },
+  {
+    "ParameterKey": "GitHubBranchName",
+    "ParameterValue": "develop"
+  },
+  {
+    "ParameterKey": "GitHubOwner",
+    "ParameterValue": "aws-quickstart"
+  },
+  {
+    "ParameterKey": "GitHubOAuthToken",
+    "ParameterValue": "github-token"
+  },
+  {
+    "ParameterKey": "CodeBuildImage",
+    "ParameterValue": "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
+  },
+  {
+    "ParameterKey": "SolutionStack",
+    "ParameterValue": "64bit Amazon Linux 2 v2.0.1 running .NET Core"
+  }
+]

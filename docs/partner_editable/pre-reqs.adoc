@@ -1,0 +1,16 @@
+// If no preperation is required, remove all content from here
+
+==== Prepare for the deployment
+
+Before you launch the Quick Start, your account must be configured as specified in the following table. Otherwise, deployment might fail.
+
+[cols=",",]
+|=============================================================================================================================================================================================================================================================================================================================================================================================================================================================
+|https://aws.amazon.com/about-aws/global-infrastructure/[Regions] |This deployment includes CodePipeline and CodeBuild, which are not currently supported in all AWS Regions. For a current list of supported Regions, see https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/[AWS Region Table] in the AWS documentation.
+|https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html[IAM permissions] |To deploy the Quick Start, log in to the AWS Management Console with AWS Identity and Access Management (IAM) permissions for the resources and actions the templates deploy. The _AdministratorAccess_ managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions.
+|http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html[S3 buckets] a|
+Unique S3 bucket names are automatically generated based on the account number and AWS Region. If you delete a stack, the logging buckets are not deleted (to support security review).
+
+If you plan to redeploy this Quick Start in the same AWS Region, you must first manually delete the S3 buckets that were created during the previous deployment. Otherwise, the redeployment will fail.
+
+|=============================================================================================================================================================================================================================================================================================================================================================================================================================================================
