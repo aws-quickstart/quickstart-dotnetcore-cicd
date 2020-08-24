@@ -1,4 +1,4 @@
-:quickstart-project-name: quickstart-microsoft-dotnetcore-cicd
+:quickstart-project-name: quickstart-dotnetcore-cicd
 :partner-product-name: DotNet Core CI/CD
 //:partner-company-name: Example Company Name, Ltd.
 :doc-month: August
