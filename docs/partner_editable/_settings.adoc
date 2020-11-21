@@ -1,10 +1,10 @@
 :quickstart-project-name: quickstart-dotnetcore-cicd
 :partner-product-name: DotNet Core CI/CD
 //:partner-company-name: Example Company Name, Ltd.
-:doc-month: August
+:doc-month: November
 :doc-year: 2020
 //:partner-contributors: John Doe and Jane Doe - {partner-company-name}
-:quickstart-contributors: Rajeswari Malladi
+:quickstart-contributors: Rajeswari Malladi and Dave May, AWS
 :deployment_time: 10 minutes
 :default_deployment_region: us-east-1
 // Uncomment these two attributes if you are leveraging
