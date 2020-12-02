@@ -1,5 +1,5 @@
+This Quick Start uses both AWS CodePipeline and AWS Elastic Beanstalk. The following Regions support both services:
+
 * US East (Northern Virginia)
-* Asia Pacific (Tokyo)
-* EU (Ireland)
 * US West (Oregon)
-* US West (Northern California)
+* EU West (Ireland)
