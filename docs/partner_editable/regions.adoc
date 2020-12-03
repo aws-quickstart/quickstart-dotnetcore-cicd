@@ -1,5 +1,5 @@
-* US East (Northern Virginia)
-* Asia Pacific (Tokyo)
-* EU (Ireland)
-* US West (Oregon)
-* US West (Northern California)
+This Quick Start includes AWS Elastic Beanstalk as well as AWS CodePipeline, which is supported only where CodeBuild supports Windows containers. The following Regions support both Elastic Beanstalk and CodePipeline:
+
+* us-east-1, US East (N. Virginia)
+* us-west-2, US West (Oregon)
+* eu-west-1, EU West (Europe, Ireland)

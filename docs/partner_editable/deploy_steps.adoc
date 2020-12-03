@@ -3,6 +3,10 @@
 
 . Sign in to your AWS account at https://aws.amazon.com with an IAM user role that has the necessary permissions. For details, see link:#_planning_the_deployment[Planning the deployment] earlier in this guide.
 . Make sure that your AWS account is configured correctly, as discussed in the link:#_technical_requirements[Technical requirements] section.
+. In the navigation bar, use the AWS Region selector to choose where you want to deploy {partner-product-name} on AWS.
+
+NOTE: For a list of Regions you can choose for this Quick Start, see the link:#_supported_regions[Supported Regions] section of this guide. For a list of all supported AWS Regions, see https://docs.aws.amazon.com/general/latest/gr/rande.html[AWS service endpoints^].
+
 
 // Optional based on Marketplace listing. Not to be edited
 ifdef::marketplace_subscription[]
@@ -19,62 +23,56 @@ This Quick Start requires a subscription to the AMI for {partner-product-name} i
 endif::marketplace_subscription[]
 // \Not to be edited
 
-=== Fork the GitHub repository
+=== Fork the repository and obtain inputs
 
-1.  Fork the GitHub repository: https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd
-2.  The repository consists of:
+The https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd[{partner-product-name} GitHub repository^] includes the following:
 
-* The quickstart-dotnetcore-cicd.yml AWS CloudFormation template
-* BuildSpec.yml, used in CodeBuild
-* Application source code
+* The AWS CloudFormation template (`quickstart-dotnetcore-cicd.template.yml`)
+* The file used in CodeBuild (`buildspec.yml`)
+* Source code for a sample web application (`WebApplicationSample`)
 
-3. Obtain the needed inputs to use later in the installation:
+Fork this GitHub repository. Then, obtain the inputs that you will need during deployment:
+
+//TODO Dave, In the following table, do you know why the last three rows come out looking vertically squished in the generated doc? Please let me know what you discover so that I can fix this myself in the future. Thanks!
 
 [cols="",options="header",]
 |===================================================================================
-|GitHub details—provide details of your forked GitHub repository
+|Inputs to obtain
 a|
-GitHubOAuthToken:
+*GitHubOAuthToken:*
 
-* Go to https://github.com/settings/tokens/new.
-* Type “.NET Core CI/CD” in the Note field.
-* Check the repo box.
-* Check the admin:repo_hook box.
-* Select Generate token.
-
-a|
-GitHubOwner:
-
-* Your GitHub login user name.
+. Go to https://github.com/settings/tokens/new.
+. Enter *.NET Core CI/CD* in the *Note* box.
+. Select the *repo* check box.
+. Select the *admin:repo_hook* check box.
+. Choose *Generate token*.
 
 a|
-GitHubRepositoryName:
-
-* The name of the forked repository from the first step.
+*GitHubOwner:* Your GitHub login user name.
 
 a|
-GitHubBranchName:
+*GitHubRepositoryName:* The name of your forked repository.
 
-* The branch name that you want to use in your fork to trigger the AWS CodePipeline.
+a|
+*GitHubBranchName:* The branch name that you want to use in your fork to initiate the AWS CodePipeline.
 
 |===================================================================================
 
 === Launch the Quick Start
 
-WARNING: If you’re deploying {partner-product-name} into an existing VPC, make sure that your VPC has two private subnets in different Availability Zones for the workload instances, and that the subnets aren’t shared. This Quick Start doesn’t support https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html[shared subnets^]. These subnets require https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html[NAT gateways^] in their route tables, to allow the instances to download packages and software without exposing them to the internet Also, make sure that the domain name option in the DHCP options is configured as explained in the http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html[Amazon VPC documentation^]. You provide your VPC settings when you launch the Quick Start.
+//WARNING: If you’re deploying {partner-product-name} into an existing VPC, make sure that your VPC has two private subnets in different Availability Zones for the workload instances, and that the subnets aren’t shared. This Quick Start doesn’t support https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html[shared subnets^]. These subnets require https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html[NAT gateways^] in their route tables, to allow the instances to download packages and software without exposing them to the internet Also, make sure that the domain name option in the DHCP options is configured as explained in the http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html[Amazon VPC documentation^]. You provide your VPC settings when you launch the Quick Start.
+
+//TODO Dave, I've commented out the above warning since you say people won't be deploying into a VPC. Is there any reason to keep the warning after all?
 
 NOTE: You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There is no additional cost for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
 
 Each deployment takes about {deployment_time} to complete.
 
-. Sign in to your AWS account, and choose one of the following options to launch the AWS CloudFormation template. For help with choosing an option, see link:#_deployment_options[deployment options] earlier in this guide.
+. Sign in to your AWS account, and launch the AWS CloudFormation template by choosing the following "Deploy" link.
 
 [cols=2*]
 |===
-^|http://qs_launch_permalink[Deploy {partner-product-short-name} into a new VPC on AWS^]
-^|http://qs_template_permalink[View template^]
-
-^|http://qs_launch_permalink[Deploy {partner-product-short-name} into an existing VPC on AWS^]
+^|http://qs_launch_permalink[Deploy a {partner-product-short-name} pipeline^]
 ^|http://qs_template_permalink[View template^]
 |===
 
