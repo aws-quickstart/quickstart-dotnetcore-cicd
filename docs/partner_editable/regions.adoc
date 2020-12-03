@@ -1,4 +1,4 @@
-This Quick Start includes AWS Elastic Beanstalk as well as AWS CodePipeline, which is supported only where CodeBuild supports Windows containers. The following Regions support both Elastic Beanstalk and CodePipeline:
+This Quick Start uses both AWS CodePipeline and AWS Elastic Beanstalk. The following Regions support both services:
 
 * us-east-1, US East (N. Virginia)
 * us-west-2, US West (Oregon)
