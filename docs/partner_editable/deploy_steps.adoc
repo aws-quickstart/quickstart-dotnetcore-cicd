@@ -72,8 +72,8 @@ Each deployment takes about {deployment_time} to complete.
 
 [cols=2*]
 |===
-^|http://qs_launch_permalink[Deploy a {partner-product-short-name} pipeline^]
-^|http://qs_template_permalink[View template^]
+^|https://fwd.aws/dRpV7[Deploy a {partner-product-short-name} pipeline^]
+^|https://fwd.aws/maKbM[View template^]
 |===
 
 [start=2]
