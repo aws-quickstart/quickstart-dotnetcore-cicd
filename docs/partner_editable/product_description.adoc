@@ -2,12 +2,8 @@
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
-This Quick Start provides a complete automated CI/CD environment. It benefits organizations that want to automate their .NET Core application release pipelines. It provides fully managed application updates using AWS CodePipeline, AWS CodeBuild, and AWS CodeDeploy. 
+This Quick Start provides an automated CI/CD environment on the AWS Cloud. It's for developers who are looking to implement a CI/CD pipeline for their .NET Core applications.
 
-Whenever code is modified within a configured GitHub repository branch, the CI/CD pipeline builds the code automatically. It then deploys the .NET Core application to AWS Elastic Beanstalk. Elastic Beanstalk now https://aws.amazon.com/about-aws/whats-new/2020/06/aws-elastic-beanstalk-announces-net-core-on-linux-platform/[supports .NET Core on the Linux platform^].
+The CI/CD environment manages application updates using AWS CodePipeline, AWS CodeBuild, and AWS CodeDeploy. Whenever code is modified within a configured GitHub repository branch, the CI/CD pipeline fetches the latest source code and automatically builds the application. It then deploys the application to the target environment: AWS Elastic Beanstalk, which now https://aws.amazon.com/about-aws/whats-new/2020/06/aws-elastic-beanstalk-announces-net-core-on-linux-platform/[supports .NET Core on the Linux platform^].
 
-The CI/CD environment does the following:
-
-* Fetches the latest source code and save it to a source artifact store.
-* Automatically builds the application.
-* Deploys the application to the target environment.
+This scalable deployment helps you deliver features and updates rapidly and reliably. You have no build servers to manage, and you pay only for what you use.
