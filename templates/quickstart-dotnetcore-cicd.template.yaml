@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: This Quick Start deploys CodeBuild, CodePipeline and CodeDeploy for .NET Core (qs-1r1rte3gi)
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: "Launch a CI/CD pipeline"
+    EntrypointName: "Parameters for deploying the CI/CD pipeline"
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
@@ -26,9 +26,9 @@ Metadata:
       GitHubBranchName:
         default: Git branch
       GitHubOwner:
-        default: GitHub username
+        default: GitHub user name
       GitHubOAuthToken:
-        default: GitHub oauth token
+        default: GitHub OAuth token
       SolutionStack:
         default: Elastic Beanstalk platform version
       CodeBuildImage:
@@ -36,26 +36,32 @@ Metadata:
 Parameters:
   GitHubRepositoryName:
     Type: String
-    Description: GitHub repository name
+    Description: Name of the GitHub repository that ....
+    //TODO Dave, Please fill in the dots (and end with a period).
     Default: quickstart-dotnetcore-cicd
   GitHubBranchName:
     Type: String
-    Description: GitHub branch name
+    Description: Name of the GitHub branch that ....
+    //TODO Dave, Please fill in the dots (and end with a period).
     Default: 'master'
   GitHubOwner:
     Type: String
-    Description: UserName for GitHUb
+    Description: User name for GitHub ....
+    //TODO Dave, Please fill in the dots (and end with a period). Weave in "owner" since that's in the parameter itself. Note that AWS style is "user name" (two words) when talking generically about a user name.
   GitHubOAuthToken:
     Type: String
     NoEcho: true
-    Description: OAuthToken for GitHUb
+    Description: OAuth token for GitHub ....
+    //TODO Dave, Please fill in the dots (and end with a period).
   SolutionStack:
     Type: String
-    Description: The platform version for the .Net Elastic Beantalk environment, please check documentation for latest platform version. 
+    Description: The platform version to use for the .NET Core Elastic Beanstalk environment. See the documentation for latest version.
+    //TODO Dave, Please add a link to this documentation. Also, note what should people do after they find out the latest version. 
     Default: '64bit Amazon Linux 2 v2.0.1 running .NET Core' 
   CodeBuildImage:
     Type: String
-    Description: The image version to use for CodeBuild, please check documentation for latest version
+    Description: The image version to use for CodeBuild. See the documentation for the latest version.
+    //TODO Dave, What's the link to this documentation? Also, note what should people do after they find out the latest version.
     Default: 'aws/codebuild/amazonlinux2-x86_64-standard:3.0'
 Resources:
   CodeBuildProject:
