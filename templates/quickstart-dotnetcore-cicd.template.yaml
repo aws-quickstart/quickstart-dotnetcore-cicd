@@ -36,32 +36,26 @@ Metadata:
 Parameters:
   GitHubRepositoryName:
     Type: String
-    Description: Name of the GitHub repository that ....
-    //TODO Dave, Please fill in the dots (and end with a period).
+    Description: Name of the GitHub repository that hosts the web application.
     Default: quickstart-dotnetcore-cicd
   GitHubBranchName:
     Type: String
-    Description: Name of the GitHub branch that ....
-    //TODO Dave, Please fill in the dots (and end with a period).
+    Description: Name of the GitHub branch that the CI/CD pipeline will pull from.
     Default: 'master'
   GitHubOwner:
     Type: String
-    Description: User name for GitHub ....
-    //TODO Dave, Please fill in the dots (and end with a period). Weave in "owner" since that's in the parameter itself. Note that AWS style is "user name" (two words) when talking generically about a user name.
+    Description: User name for accessing the GitHub repository.
   GitHubOAuthToken:
     Type: String
     NoEcho: true
-    Description: OAuth token for GitHub ....
-    //TODO Dave, Please fill in the dots (and end with a period).
+    Description: OAuth token for accessing the GitHub repository.
   SolutionStack:
     Type: String
-    Description: The platform version to use for the .NET Core Elastic Beanstalk environment. See the documentation for latest version.
-    //TODO Dave, Please add a link to this documentation. Also, note what should people do after they find out the latest version. 
-    Default: '64bit Amazon Linux 2 v2.0.1 running .NET Core' 
+    Description: The platform version to use for the .NET Core Elastic Beanstalk environment. See the documentation (https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux) for latest version.
+    Default: '64bit Amazon Linux 2 v2.1.0 running .NET Core' 
   CodeBuildImage:
     Type: String
-    Description: The image version to use for CodeBuild. See the documentation for the latest version.
-    //TODO Dave, What's the link to this documentation? Also, note what should people do after they find out the latest version.
+    Description: The Docket image version to use for CodeBuild. See the documentation (https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html) for the latest version.
     Default: 'aws/codebuild/amazonlinux2-x86_64-standard:3.0'
 Resources:
   CodeBuildProject:

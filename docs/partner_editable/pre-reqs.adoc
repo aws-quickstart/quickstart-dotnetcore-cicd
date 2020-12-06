@@ -1,2 +1,3 @@
 // If no preparation is required, remove all content from here
 //TODO Dave, Our guides no longer include the table that used to be in this section, so I've deleted it. The content we need now exists in other sections of this guide. If you disagree, let me know which details need to be reinstated.
+//That's fine with me. I initiated this document months ago, the boilerplate has changed substantially in the meantime.

@@ -30,29 +30,34 @@ The https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd[{part
 Fork this GitHub repository. Then, obtain the inputs that you will need during deployment:
 
 //TODO Dave, In the following table, do you know why the last three rows come out looking vertically squished in the generated doc? Please let me know what you discover so that I can fix this myself in the future. Thanks!
+//It wasn'y formatted correctly. See https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#tables.
 
-[cols="",options="header",]
-|===================================================================================
-|Inputs to obtain
-a|
-*GitHubOAuthToken:*
+[%header,cols=2*]
+|===
+|Input name
+|Input value
 
-. Go to https://github.com/settings/tokens/new.
-. Enter *.NET Core CI/CD* in the *Note* box.
-. Select the *repo* check box.
-. Select the *admin:repo_hook* check box.
-. Choose *Generate token*.
+|GitHubOAuthToken
+|
+Go to https://github.com/settings/tokens/new.
 
-a|
-*GitHubOwner:* Your GitHub login user name.
+Enter *.NET Core CI/CD* in the *Note* box.
 
-a|
-*GitHubRepositoryName:* The name of your forked repository.
+Select the *repo* check box.
 
-a|
-*GitHubBranchName:* The branch name that you want to use in your fork to initiate the AWS CodePipeline.
+Select the *admin:repo_hook* check box.
 
-|===================================================================================
+Choose *Generate token*.
+
+|GitHubOwner
+|Your GitHub login user name.
+
+|GitHubRepositoryName
+|The name of your forked repository.
+
+|GitHubBranchName
+|The branch name that you want to use in your fork to initiate the AWS CodePipeline.
+|===
 
 === Launch the Quick Start
 
