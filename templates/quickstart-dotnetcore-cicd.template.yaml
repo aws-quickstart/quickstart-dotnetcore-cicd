@@ -51,11 +51,11 @@ Parameters:
     Description: OAuth token for accessing the GitHub repository.
   SolutionStack:
     Type: String
-    Description: The platform version to use for the .NET Core Elastic Beanstalk environment. See the documentation (https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux) for latest version.
+    Description: The platform version to use for the .NET Core Elastic Beanstalk environment. See the documentation (https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux) for latest version, and enter the latest version for the parameter value.
     Default: '64bit Amazon Linux 2 v2.1.0 running .NET Core' 
   CodeBuildImage:
     Type: String
-    Description: The Docket image version to use for CodeBuild. See the documentation (https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html) for the latest version.
+    Description: The Docket image version to use for CodeBuild. See the documentation (https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html) for latest version, and enter the latest version for the parameter value.
     Default: 'aws/codebuild/amazonlinux2-x86_64-standard:3.0'
 Resources:
   CodeBuildProject:
