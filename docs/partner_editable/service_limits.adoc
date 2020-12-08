@@ -3,7 +3,7 @@
 |Resource |This deployment uses
 
 // Space needed to maintain table headers
-|IAM roles |3
+|AWS Identity and Access Management (IAM) roles |3
 |S3 buckets |2
 |Elastic Beanstalk environments |1
 |Elastic Beanstalk applications |1
