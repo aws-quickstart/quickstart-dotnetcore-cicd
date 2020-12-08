@@ -1,5 +1,5 @@
 project:
-  name: quickstart-microsoft-dotnetcore-cicd
+  name: quickstart-dotnetcore-cicd
   owner: quickstart-eng@amazon.com
   package_lambda: false
   regions:

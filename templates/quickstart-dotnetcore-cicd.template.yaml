@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: This Quick Start deploys CodeBuild, CodePipeline and CodeDeploy for .NET Core (qs-1r1rte3gi)
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: "Launch a CI/CD pipeline"
+    EntrypointName: "Parameters for deploying the CI/CD pipeline"
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
@@ -13,49 +13,49 @@ Metadata:
           - GitHubOwner
           - GitHubOAuthToken
       - Label:
-          default: Elastic Beanstalk configuration
+          default: AWS Elastic Beanstalk configuration
         Parameters:
           - SolutionStack
       - Label:
-          default: CodeBuild configuration
+          default: AWS CodeBuild configuration
         Parameters:
           - CodeBuildImage
     ParameterLabels:
       GitHubRepositoryName:
         default: GitHub repository name
       GitHubBranchName:
-        default: Git branch
+        default: GitHub branch name
       GitHubOwner:
-        default: GitHub username
+        default: GitHub owner user name
       GitHubOAuthToken:
-        default: GitHub oauth token
+        default: GitHub OAuth token
       SolutionStack:
         default: Elastic Beanstalk platform version
       CodeBuildImage:
-        default: CodeBuild image
+        default: CodeBuild image version
 Parameters:
   GitHubRepositoryName:
     Type: String
-    Description: GitHub repository name
-    Default: quickstart-microsoft-dotnetcore-cicd
+    Description: Name of the GitHub repository that hosts the web application.
+    Default: quickstart-dotnetcore-cicd
   GitHubBranchName:
     Type: String
-    Description: GitHub branch name
-    Default: 'master'
+    Description: Name of the GitHub branch that the CI/CD pipeline will pull from.
+    Default: 'main'
   GitHubOwner:
     Type: String
-    Description: UserName for GitHUb
+    Description: User name for accessing the GitHub repository.
   GitHubOAuthToken:
     Type: String
     NoEcho: true
-    Description: OAuthToken for GitHUb
+    Description: OAuth token for accessing the GitHub repository.
   SolutionStack:
     Type: String
-    Description: The platform version for the .Net Elastic Beantalk environment, please check documentation for latest platform version. 
-    Default: '64bit Amazon Linux 2 v2.0.1 running .NET Core' 
+    Description: Platform version to use for the .NET Core Elastic Beanstalk environment. Enter the latest version. To find the latest version, go to https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux.
+    Default: '64bit Amazon Linux 2 v2.1.0 running .NET Core' 
   CodeBuildImage:
     Type: String
-    Description: The image version to use for CodeBuild, please check documentation for latest version
+    Description: Docker image version to use for CodeBuild. Enter the latest version. To find the latest version, go to https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html.
     Default: 'aws/codebuild/amazonlinux2-x86_64-standard:3.0'
 Resources:
   CodeBuildProject:
@@ -288,9 +288,13 @@ Resources:
                       - 'logs:CreateLogStream'
                       - 'logs:PutLogEvents'
                     - Effect: Allow
-                      Resource: '*'
+                      Resource:  !Sub arn:aws:s3:::${AWS::StackName}-codepipelineartifactstore*
                       Action:
-                      - 's3:*'
+                      - 's3:PutObject'
+                      - 's3:GetObject'
+                      - 's3:GetObjectVersion'
+                      - 's3:GetBucketAcl'
+                      - 's3:GetBucketLocation'
   EBInstanceProfileRole:
     Type: 'AWS::IAM::Role'
     Properties:
