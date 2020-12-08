@@ -29,25 +29,22 @@ The https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd[{part
 
 Fork this GitHub repository. Then, obtain the inputs that you will need during deployment:
 
-//TODO Dave, In the following table, do you know why the last three rows come out looking vertically squished in the generated doc? Please let me know what you discover so that I can fix this myself in the future. Thanks!
-//It wasn'y formatted correctly. See https://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#tables.
-
 [%header,cols=2*]
 |===
-|Input name
+|Input name 
 |Input value
 
 |GitHubOAuthToken
 |
-Go to https://github.com/settings/tokens/new.
+1. Go to https://github.com/settings/tokens/new.
 
-Enter *.NET Core CI/CD* in the *Note* box.
+2. Enter *.NET Core CI/CD* in the *Note* box.
 
-Select the *repo* check box.
+3. Select the *repo* check box.
 
-Select the *admin:repo_hook* check box.
+4. Select the *admin:repo_hook* check box.
 
-Choose *Generate token*.
+5. Choose *Generate token*.
 
 |GitHubOwner
 |Your GitHub login user name.
@@ -63,7 +60,7 @@ Choose *Generate token*.
 
 //WARNING: If you’re deploying {partner-product-name} into an existing VPC, make sure that your VPC has two private subnets in different Availability Zones for the workload instances, and that the subnets aren’t shared. This Quick Start doesn’t support https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html[shared subnets^]. These subnets require https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html[NAT gateways^] in their route tables, to allow the instances to download packages and software without exposing them to the internet Also, make sure that the domain name option in the DHCP options is configured as explained in the http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html[Amazon VPC documentation^]. You provide your VPC settings when you launch the Quick Start.
 
-//TODO Dave, I've commented out the above warning since you say people won't be deploying into a VPC. Is there any reason to keep it?
+//Dave, I've commented out the above warning since you say people won't be deploying into a VPC.
 
 NOTE: You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There is no additional cost for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
 

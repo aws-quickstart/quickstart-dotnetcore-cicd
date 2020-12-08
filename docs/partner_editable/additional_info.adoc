@@ -3,7 +3,7 @@
 
 == Test the deployment
 
-As shown in <<2-stacks-created>>, your deployment has created two AWS CloudFormation stacks: an Elastic Beanstalk stack with a randomly-generated name and a CodePipeline stack that was named when you deployed the Quick Start. (The name of the CodePipeline stack also appears under the *Outputs* tab, as shown in <<cfn_outputs>>). 
+As shown in <<2-stacks-created>>, your deployment has created two AWS CloudFormation stacks: an Elastic Beanstalk stack with a randomly generated name and a CodePipeline stack that was named when you deployed the Quick Start. (The name of the CodePipeline stack also appears under the *Outputs* tab, as shown in <<cfn_outputs>>). 
 
 :xrefstyle: short
 [#2-stacks-created]
@@ -21,7 +21,7 @@ Test the deployment as follows:
 image::../images/pipeline-succeeded.png[Pipeline succeeded,width=80%,height=80%]
 
 [start=2]
-. Navigate to the *Outputs* tab for the Elastic Beanstalk CloudFormation stack, as shown in <<load-balancer-url>>. Choose the load-balancer URL, and verify that the web page loads.
+. Navigate to the *Outputs* tab for the Elastic Beanstalk CloudFormation stack, as shown in <<load-balancer-url>>. Choose the load-balancer URL, and verify that the webpage loads.
 
 [#load-balancer-url]
 .Load-balancer URL
