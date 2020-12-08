@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>DotNet Core CI/CD on the AWS Cloud</title>
+<title>.NET Core CI/CD on the AWS Cloud</title>
 <style>
 
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -762,6 +762,25 @@ table.tableblock .title,
 table p {
   margin: 0rem;
 }
+
+/* Add border around hyperlink images */
+a img {
+    border: 1px solid #A4A4A4;
+}
+
+.preview_mode {
+	border-color:#e0e0dc;
+	-webkit-box-shadow:0 1px 4px #e0e0dc;
+	box-shadow:0 1px 4px #e0e0dc;
+  background:#ffffb3;
+  padding-bottom: 2rem;
+}
+.preview_mode .tableblock {
+  background:#ffffb3;
+}
+
+.footer-text{color:rgba(255,255,255,.8);line-height:1.44;background:#1c222a;padding:1.25em;max-width:100%;margin-bottom:unset}
+p.footer-text a{color:#d7d8d8}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -771,7 +790,7 @@ table p {
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#_overview">Overview</a></li>
-<li><a href="#_dotnet_core_cicd_on_aws">DotNet Core CI/CD on AWS</a></li>
+<li><a href="#_net_core_cicd_on_aws">.NET Core CI/CD on AWS</a></li>
 <li><a href="#_cost">Cost</a></li>
 <li><a href="#_software_licenses">Software licenses</a></li>
 <li><a href="#_architecture">Architecture</a></li>
@@ -785,35 +804,37 @@ table p {
 <li><a href="#_deployment_steps">Deployment steps</a>
 <ul class="sectlevel2">
 <li><a href="#_sign_in_to_your_aws_account">Sign in to your AWS account</a></li>
-<li><a href="#_fork_the_github_repository">Fork the GitHub repository</a></li>
+<li><a href="#_fork_the_repository_and_obtain_inputs">Fork the repository and obtain inputs</a></li>
 <li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
-<li><a href="#_launch_a_cicd_pipeline">Launch a CI/CD pipeline</a></li>
 </ul>
 </li>
+<li><a href="#_test_the_deployment">Test the deployment</a></li>
 <li><a href="#_faq">FAQ</a></li>
+<li><a href="#_parameter_reference">Parameter reference</a>
+<ul class="sectlevel2">
+<li><a href="#_parameters_for_deploying_the_cicd_pipeline">Parameters for deploying the CI/CD pipeline</a></li>
+</ul>
+</li>
 <li><a href="#_send_us_feedback">Send us feedback</a></li>
 <li><a href="#_quick_start_reference_deployments">Quick Start reference deployments</a></li>
-<li><a href="#_github_repository">GitHub repository</a>
-<ul class="sectlevel3">
+<li><a href="#_github_repository">GitHub repository</a></li>
 <li><a href="#_notices">Notices</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<h2 id="_dotnet_core_cicd_on_the_aws_cloud" class="discrete text-center">DotNet Core CI/CD on the AWS Cloud</h2>
+<h2 id="_net_core_cicd_on_the_aws_cloud" class="discrete text-center">.NET Core CI/CD on the AWS Cloud</h2>
 <h2 id="_quick_start_reference_deployment" class="discrete text-left text-center">Quick Start Reference Deployment</h2>
 <div class="imageblock text-center">
 <div class="content">
-<img src="https://aws-quickstart.s3.amazonaws.com/quickstart-microsoft-dotnetcore-cicd/docs/boilerplate/.images/aws-quickstart-graphic.png" alt="QS" width="80" height="80">
+<img src="https://aws-quickstart.s3.amazonaws.com/quickstart-dotnetcore-cicd/docs/boilerplate/.images/aws-quickstart-graphic.png" alt="QS" width="80" height="80">
 </div>
 </div>
 <div class="paragraph text-center">
-<p><strong>August, 2020</strong><br>
-<em>Rajeswari Malladi</em></p>
+<p><strong>December 2020</strong><br>
+<em>Rajeswari Malladi and Dave May, AWS Quick Start team</em></p>
 </div>
 <div class="admonitionblock tip text-left">
 <table>
@@ -822,7 +843,7 @@ table p {
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Visit our <a href="https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd" target="_blank" rel="noopener">GitHub repository</a> for source files and to post feedback,
+Visit our <a href="https://github.com/aws-quickstart/quickstart-dotnetcore-cicd" target="_blank" rel="noopener">GitHub repository</a> for source files and to post feedback,
 report bugs, or submit feature ideas for this Quick Start.
 </td>
 </tr>
@@ -837,51 +858,21 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Quick Start reference deployment guide provides step-by-step instructions for deploying a .NET Core continuous integration (CI) and continuous delivery (CD) pipeline on the AWS Cloud.</p>
+<p>This guide provides instructions for deploying the .NET Core CI/CD Quick Start reference architecture on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>The Quick Start is for developers who are looking for a deployment pipeline to implement CI/CD for their .NET Core workloads on AWS. Using this highly scalable solution enables customers to rapidly and reliably deliver features and updates. There are no build servers to manage, and customers only pay for what they use.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Amazon may share who uses AWS
-Quick Starts with the AWS Partner Network (APN) Partner that
-collaborated with AWS on the content of the Quick Start.
-</td>
-</tr>
-</table>
+<p>This Quick Start is for developers who are looking to implement an automated continuous integration and continuous delivery (CI/CD) pipeline for their .NET Core applications.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dotnet_core_cicd_on_aws">DotNet Core CI/CD on AWS</h2>
+<h2 id="_net_core_cicd_on_aws">.NET Core CI/CD on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Quick Start provides an end-to-end automated CI/CD environment.</p>
+<p>The .NET Core CI/CD environment manages application updates using AWS CodePipeline, AWS CodeBuild, and AWS CodeDeploy. The CI/CD pipeline polls a GitHub repository for updates. Whenever code is modified within the configured repository branch, the pipeline fetches the latest source code and automatically builds the application. It then deploys the application to an AWS Elastic Beanstalk environment running Amazon Linux 2.</p>
 </div>
 <div class="paragraph">
-<p>This solution will benefit organizations that want to automate their .NET Core application release pipelines. It provides fully managed and reliable application updates using AWS CodePipeline, AWS CodeBuild, and AWS CodeDeploy. Whenever code is modified within a configured GitHub repository branch, the deployment pipeline automatically builds the code using AWS CodeBuild and deploys the .NET Core application to AWS Elastic Beanstalk.</p>
-</div>
-<div class="paragraph">
-<p>After deploying the Quick Start, you can use it to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Fetch the latest source code and save it to a source artifact store.</p>
-</li>
-<li>
-<p>Automatically build the application.</p>
-</li>
-<li>
-<p>Deploy the application to the target environment.</p>
-</li>
-</ul>
+<p>This scalable deployment helps you deliver features and updates rapidly and reliably. You have no build servers to manage, and you pay only for what you use.</p>
 </div>
 </div>
 </div>
@@ -894,7 +885,7 @@ this Quick Start. There is no additional cost for
 using the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p>The AWS CloudFormation template for this Quick Start includes
+<p>The AWS CloudFormation templates for Quick Starts include
 configuration parameters that you can customize. Some of the settings,
 such as the instance type, affect the cost of deployment. For cost estimates,
 see the pricing pages for each AWS service you use. Prices are subject to change.</p>
@@ -906,7 +897,7 @@ see the pricing pages for each AWS service you use. Prices are subject to change
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-gettingstarted-turnonreports.html" target="_blank" rel="noopener">AWS Cost and Usage Report</a> to deliver billing metrics to an Amazon Simple Storage Service (Amazon S3) bucket in your account. It provides cost estimates based on usage throughout each month and aggregates the data at the end of the month. For more information about the report, see the <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage.html" target="_blank" rel="noopener">AWS documentation</a>.
+After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-gettingstarted-turnonreports.html" target="_blank" rel="noopener">create AWS Cost and Usage Reports</a> to deliver billing metrics to an Amazon Simple Storage Service (Amazon S3) bucket in your account. These reports provide cost estimates based on usage throughout each month and aggregate the data at the end of the month. For more information, see <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-reports-costusage.html" target="_blank" rel="noopener">What are AWS Cost and Usage Reports?</a>
 </td>
 </tr>
 </table>
@@ -917,7 +908,7 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>There are no licensing requirements for this solution.</p>
+<p>There are no licensing requirements for this Quick Start.</p>
 </div>
 </div>
 </div>
@@ -926,17 +917,17 @@ After you deploy the Quick Start, enable the <a href="https://docs.aws.amazon.co
 <div class="sectionbody">
 <div class="paragraph">
 <p>Deploying this Quick Start with
-<strong>default parameters</strong> builds the following <em>DotNet Core CI/CD</em> environment in the
+default parameters builds the following .NET Core CI/CD environment in the
 AWS Cloud.</p>
 </div>
 <div id="architecture1" class="imageblock">
 <div class="content">
-<a class="image" href="images/architecture_diagram.png"><img src="images/architecture_diagram.png" alt="Architecture" width="648" height="439"></a>
+<img src="images/architecture_diagram.png" alt="Architecture" width="100%" height="100%">
 </div>
-<div class="title">Figure 1. Quick Start architecture for <em>DotNet Core CI/CD</em> on AWS</div>
+<div class="title">Figure 1. Quick Start architecture for .NET Core CI/CD on AWS</div>
 </div>
 <div class="paragraph">
-<p>As shown in Figure 1, the Quick Start sets up the following:</p>
+<p>As shown in <a href="#architecture1">Figure 1</a>, the Quick Start sets up the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -944,27 +935,21 @@ AWS Cloud.</p>
 <p>An S3 bucket for holding artifacts.</p>
 </li>
 <li>
-<p>An Elastic Beanstalk environment that acts as the target for application code deployments.</p>
+<p>An Elastic Beanstalk environment that acts as the target when the application&#8217;s latest build package is deployed.</p>
 </li>
 <li>
-<p>An AWS CodePipeline with source, build, and deploy stages.</p>
+<p>A CI/CD pipeline with source, build, and deploy stages.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>As a prerequisite, AWS CloudFormation creates an AWS Elastic Beanstalk application and environment that acts as a target for deploying the latest application. AWS Elastic Beanstalk <a href="https://aws.amazon.com/about-aws/whats-new/2020/06/aws-elastic-beanstalk-announces-net-core-on-linux-platform/">now supports .NET Core</a> on Linux platform</p>
+<p>The source stage invokes CodePipeline every time the code changes in the configured GitHub repository branch. This stage configures GitHub, which integrates the application source code via webhooks. It then fetches the latest GitHub code and places it in an S3 bucket in the <code>Source Artifacts</code> directory.</p>
 </div>
 <div class="paragraph">
-<p>AWS CloudFormation then creates an AWS CodePipeline with three stages: source, build, and deploy.</p>
+<p>The build stage invokes CodeBuild, which fetches the source code from the S3 bucket. The CodeBuild-provided Amazon Linux 2 Docker image for .NET Core compiles the latest source code using the steps provided in the associated <code>BuildSpec.yml</code> file. The resulting build package is placed in the <code>Build Artifacts</code> directory in the S3 bucket.</p>
 </div>
 <div class="paragraph">
-<p>The source stage invokes CodePipeline every time there is a code change in the configured GitHub repository branch. This stage configures GitHub, which integrates the application source code via webhooks. It then fetches the latest GitHub code and places it in an Amazon Simple Storage Service (Amazon S3) bucket. The resulting source code is placed in the Source Artifacts folder.</p>
-</div>
-<div class="paragraph">
-<p>The build stage of CodePipeline triggers AWS CodeBuild, which fetches the source code from S3 and uses the CodeBuild provided Amazon Linux Docker image for .NET Core to compile the latest source code using the steps provided in associated BuildSpec.yml file. The resulting build package is placed in the Build Artifacts folder in the S3 bucket.</p>
-</div>
-<div class="paragraph">
-<p>Finally, the deploy stage of CodePipeline triggers AWS CodeDeploy to fetch the build package from the S3 bucket and deploys it to the Elastic Beanstalk environment.</p>
+<p>The deploy stage invokes CodeDeploy to fetch the build package from the S3 bucket and deploy it to the Elastic Beanstalk environment.</p>
 </div>
 </div>
 </div>
@@ -974,19 +959,10 @@ AWS Cloud.</p>
 <div class="sect2">
 <h3 id="_specialized_knowledge">Specialized knowledge</h3>
 <div class="paragraph">
-<p>This deployment guide requires a moderate level of familiarity with
-AWS services. If you’re new to AWS, visit the
-<a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started Resource Center</a>
-and the <a href="https://aws.amazon.com/training/">AWS Training and Certification
-website</a>. These sites provide materials for learning how to design,
-deploy, and operate your infrastructure and applications on the AWS
-Cloud.</p>
+<p>This deployment requires a moderate level of familiarity with AWS services. If you’re new to AWS, visit <a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started with AWS</a> and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">Training and Certification</a>. These sites provide materials for learning how to design, deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with Microsoft technologies, specifically .NET Core and its support on Linux platform.</p>
-</div>
-<div class="paragraph">
-<p>This deployment guide also requires a moderate level of familiarity with AWS services. If you’re new to AWS, visit the <a href="https://aws.amazon.com/getting-started/">Getting Started Resource Center</a> and the <a href="https://aws.amazon.com/training/">AWS Training and Certification website</a> for materials and programs that can help you develop the skills to design, deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
+<p>This Quick Start also assumes familiarity with the .NET Core development platform and its support on Linux.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1004,9 +980,9 @@ Cloud.</p>
 <p>Before you launch the Quick Start, your account must be configured as specified in the following table. Otherwise, deployment might fail.</p>
 </div>
 <div class="sect3">
-<h4 id="_resource_limits">Resource limits</h4>
+<h4 id="_resource_quotas">Resource quotas</h4>
 <div class="paragraph">
-<p>If necessary, request <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">service quota increases</a> for the following resources. You might need to request increases if your existing deployment currently uses these resources, and this Quick Start deployment could result in exceeding the default quotas. The <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">Service Quotas console</a> displays your usage and quotas for some aspects of some services. For more information, see the <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">AWS documentation</a>.</p>
+<p>If necessary, request <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">service quota increases</a> for the following resources. You might need to request increases if your existing deployment currently uses these resources and if this Quick Start deployment could result in exceeding the default quotas. The <a href="https://console.aws.amazon.com/servicequotas/home?region=us-east-2#!/" target="_blank" rel="noopener">Service Quotas console</a> displays your usage and quotas for some aspects of some services. For more information, see <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">What is Service Quotas?</a> and <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html" target="_blank" rel="noopener">AWS service quotas</a>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1021,7 +997,7 @@ Cloud.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IAM roles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Identity and Access Management (IAM) roles</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 </tr>
 <tr>
@@ -1048,16 +1024,22 @@ Cloud.</p>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_supported_regions">Supported regions</h4>
+<h4 id="_supported_regions">Supported Regions</h4>
 <div class="paragraph">
-<p>The following regions are currently supported by this Quick Start.</p>
+<p>This Quick Start supports the following Regions:</p>
 </div>
-<div class="paragraph">
-<p>US East (Northern Virginia)
-Asia Pacific (Tokyo)
-EU (Ireland)
-US West (Oregon)
-US West (Northern California)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>us-east-1, US East (N. Virginia)</p>
+</li>
+<li>
+<p>us-west-2, US West (Oregon)</p>
+</li>
+<li>
+<p>eu-west-1, EU West (Europe, Ireland)</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1066,7 +1048,7 @@ US West (Northern California)</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Certain regions are available on an opt-in basis. Refer to the AWS Documentation on <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing Regions</a> for more information.
+Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.amazon.com/general/latest/gr/rande-manage.html" target="_blank" rel="noopener">Managing AWS Regions</a>.
 </td>
 </tr>
 </table>
@@ -1075,42 +1057,8 @@ Certain regions are available on an opt-in basis. Refer to the AWS Documentation
 <div class="sect3">
 <h4 id="_iam_permissions">IAM permissions</h4>
 <div class="paragraph">
-<p>Before launching the Quick Start, you must log in to the AWS Management Console with <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html" target="_blank" rel="noopener">IAM permissions</a> for the resources and actions the templates deploy.</p>
+<p>Before launching the Quick Start, you must sign in to the AWS Management Console with IAM permissions for the resources that the templates deploy. The <em>AdministratorAccess</em> managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html" target="_blank" rel="noopener">AWS managed policies for job functions</a>.</p>
 </div>
-<div class="paragraph">
-<p>The <em>AdministratorAccess</em> managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_prepare_for_the_deployment">Prepare for the deployment</h4>
-<div class="paragraph">
-<p>Before you launch the Quick Start, your account must be configured as specified in the following table. Otherwise, deployment might fail.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://aws.amazon.com/about-aws/global-infrastructure/">Regions</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This deployment includes CodePipeline and CodeBuild, which are not currently supported in all AWS Regions. For a current list of supported Regions, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/">AWS Region Table</a> in the AWS documentation.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html">IAM permissions</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To deploy the Quick Start, log in to the AWS Management Console with AWS Identity and Access Management (IAM) permissions for the resources and actions the templates deploy. The <em>AdministratorAccess</em> managed policy within IAM provides sufficient permissions, although your organization may choose to use a custom policy with more restrictions.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html">S3 buckets</a></p></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Unique S3 bucket names are automatically generated based on the account number and AWS Region. If you delete a stack, the logging buckets are not deleted (to support security review).</p>
-</div>
-<div class="paragraph">
-<p>If you plan to redeploy this Quick Start in the same AWS Region, you must first manually delete the S3 buckets that were created during the previous deployment. Otherwise, the redeployment will fail.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect3">
 <h4 id="_deployment_options">Deployment options</h4>
@@ -1138,102 +1086,57 @@ Certain regions are available on an opt-in basis. Refer to the AWS Documentation
 </div>
 </div>
 <div class="sect2">
-<h3 id="_fork_the_github_repository">Fork the GitHub repository</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Fork the GitHub repository: <a href="https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd" class="bare">https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd</a></p>
-</li>
-<li>
-<p>The repository consists of:</p>
+<h3 id="_fork_the_repository_and_obtain_inputs">Fork the repository and obtain inputs</h3>
+<div class="paragraph">
+<p>The <a href="https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd" target="_blank" rel="noopener">.NET Core CI/CD GitHub repository</a> includes the following:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>The quickstart-dotnetcore-cicd.yml AWS CloudFormation template</p>
+<p>The AWS CloudFormation template (<code>quickstart-dotnetcore-cicd.template.yml</code>)</p>
 </li>
 <li>
-<p>BuildSpec.yml, used in CodeBuild</p>
+<p>The file used in CodeBuild (<code>buildspec.yml</code>)</p>
 </li>
 <li>
-<p>Application source code</p>
+<p>Source code for a sample web application (<code>WebApplicationSample</code>)</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Obtain the needed inputs to use later in the installation:</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Fork this GitHub repository. Then, obtain the inputs that you will need during deployment:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 100%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">GitHub details—provide details of your forked GitHub repository</th>
+<th class="tableblock halign-left valign-top">Input name</th>
+<th class="tableblock halign-left valign-top">Input value</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>GitHubOAuthToken:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Go to <a href="https://github.com/settings/tokens/new" class="bare">https://github.com/settings/tokens/new</a>.</p>
-</li>
-<li>
-<p>Type “.NET Core CI/CD” in the Note field.</p>
-</li>
-<li>
-<p>Check the repo box.</p>
-</li>
-<li>
-<p>Check the admin:repo_hook box.</p>
-</li>
-<li>
-<p>Select Generate token.</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHubOAuthToken</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. Go to <a href="https://github.com/settings/tokens/new" class="bare">https://github.com/settings/tokens/new</a>.</p>
+<p class="tableblock">2. Enter <strong>.NET Core CI/CD</strong> in the <strong>Note</strong> box.</p>
+<p class="tableblock">3. Select the <strong>repo</strong> check box.</p>
+<p class="tableblock">4. Select the <strong>admin:repo_hook</strong> check box.</p>
+<p class="tableblock">5. Choose <strong>Generate token</strong>.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>GitHubOwner:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Your GitHub login user name.</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHubOwner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your GitHub login user name.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>GitHubRepositoryName:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The name of the forked repository from the first step.</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHubRepositoryName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of your forked repository.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>GitHubBranchName:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The branch name that you want to use in your fork to trigger the AWS CodePipeline.</p>
-</li>
-</ul>
-</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHubBranchName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The branch name that you want to use in your fork to initiate the AWS CodePipeline.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1252,48 +1155,32 @@ You are responsible for the cost of the AWS services used while running this Qui
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>Each deployment takes about 10 minutes to complete.</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Sign in to your AWS account, and choose one of the following options to launch the AWS CloudFormation template. For help with choosing an option, see <a href="#_deployment_options">deployment options</a> earlier in this guide.</p>
+<p>Sign in to your AWS account, and launch the AWS CloudFormation template by choosing the following "Deploy" link.</p>
 </li>
 </ol>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 100%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://qs_launch_link" target="_blank" rel="noopener">Deploy DotNet Core CI/CD into a new VPC on AWS</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://qs_launch_link" target="_blank" rel="noopener">Deploy DotNet Core CI/CD into an existing VPC on AWS</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/dRpV7" target="_blank" rel="noopener">Deploy a .NET Core CI/CD pipeline</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/maKbM" target="_blank" rel="noopener">View template</a></p></td>
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-If you’re deploying DotNet Core CI/CD into an existing VPC, make sure that your VPC has two private subnets in different Availability Zones for the workload instances, and that the subnets aren’t shared. This Quick Start doesn’t support <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">shared subnets</a>. These subnets require <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables, to allow the instances to download packages and software without exposing them to the internet.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Also, make sure that the domain name option in the DHCP options is configured as explained in the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">Amazon VPC documentation</a>. You provide your VPC settings when you launch the Quick Start.</p>
-</div>
-<div class="paragraph">
-<p>Each deployment takes about 10 minutes to complete.</p>
-</div>
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for DotNet Core CI/CD will be built. The template is launched in the us-east-1 Region by default.</p>
+<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for .NET Core CI/CD will be built. The template is launched in the us-east-1 Region by default.</p>
 </li>
 </ol>
 </div>
@@ -1303,13 +1190,129 @@ If you’re deploying DotNet Core CI/CD into an existing VPC, make sure that you
 <p>On the <strong>Create stack</strong> page, keep the default setting for the template URL, and then choose <strong>Next</strong>.</p>
 </li>
 <li>
-<p>On the <strong>Specify stack details</strong> page, change the stack name if needed. Review the parameters for the template. Provide values for the parameters that require input. For all other parameters, review the default settings and customize them as necessary.</p>
+<p>On the <strong>Specify stack details</strong> page, change the stack name if needed. Review the parameters for the template. Provide values for the parameters that require input. For all other parameters, review the default settings and customize them as necessary. For details on each parameter, see the <a href="#_parameter_reference">Parameter reference</a> section of this guide. When you finish reviewing and customizing the parameters, choose <strong>Next</strong>.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p>In the following tables, parameters are listed by category and described separately for the deployment options. When you finish reviewing and customizing the parameters, choose <strong>Next</strong>.</p>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>On the <strong>Configure stack options</strong> page, you can <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html" target="_blank" rel="noopener">specify tags</a> (key-value pairs) for resources in your stack and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html" target="_blank" rel="noopener">set advanced options</a>. When you’re finished, choose <strong>Next</strong>.</p>
+</li>
+<li>
+<p>On the <strong>Review</strong> page, review and confirm the template settings. Under <strong>Capabilities</strong>, select the two check boxes to acknowledge that the template creates IAM resources and might require the ability to automatically expand macros.</p>
+</li>
+<li>
+<p>Choose <strong>Create stack</strong> to deploy the stack.</p>
+</li>
+<li>
+<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the .NET Core CI/CD deployment is ready.</p>
+</li>
+<li>
+<p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in <a href="#cfn_outputs">Figure 2</a>, to view the created resources.</p>
+</li>
+</ol>
 </div>
+<div id="cfn_outputs" class="imageblock">
+<div class="content">
+<a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="100%" height="100%"></a>
+</div>
+<div class="title">Figure 2. .NET Core CI/CD outputs after successful deployment</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_test_the_deployment">Test the deployment</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As shown in <a href="#2-stacks-created">Figure 3</a>, your deployment has created two AWS CloudFormation stacks: an Elastic Beanstalk stack with a randomly generated name and a CodePipeline stack that was named when you deployed the Quick Start. (The name of the CodePipeline stack also appears under the <strong>Outputs</strong> tab, as shown in <a href="#cfn_outputs">Figure 2</a>).</p>
+</div>
+<div id="2-stacks-created" class="imageblock">
+<div class="content">
+<a class="image" href="images/2-stacks-created.png"><img src="images/2-stacks-created.png" alt="Stacks" width="80%" height="80%"></a>
+</div>
+<div class="title">Figure 3. Two stacks created during deployment</div>
+</div>
+<div class="paragraph">
+<p>Test the deployment as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the CodePipeline console, and view your <a href="https://console.aws.amazon.com/codesuite/codepipeline/pipelines" target="_blank" rel="noopener">created pipelines</a>. Verify that the status of the pipeline created in this deployment is <strong>Succeeded</strong>, as shown in <a href="#pipeline-succeeded">Figure 4</a>.</p>
+</li>
+</ol>
+</div>
+<div id="pipeline-succeeded" class="imageblock">
+<div class="content">
+<a class="image" href="images/pipeline-succeeded.png"><img src="images/pipeline-succeeded.png" alt="Pipeline succeeded" width="80%" height="80%"></a>
+</div>
+<div class="title">Figure 4. Pipeline with "Succeeded" status</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Navigate to the <strong>Outputs</strong> tab for the Elastic Beanstalk CloudFormation stack, as shown in <a href="#load-balancer-url">Figure 5</a>. Choose the load-balancer URL, and verify that the webpage loads.</p>
+</li>
+</ol>
+</div>
+<div id="load-balancer-url" class="imageblock">
+<div class="content">
+<a class="image" href="images/load-balancer-url.png"><img src="images/load-balancer-url.png" alt="Load-balancer URL" width="80%" height="80%"></a>
+</div>
+<div class="title">Figure 5. Load-balancer URL</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Navigate to the Elastic Beanstalk environment created by AWS CloudFormation, choose the URL for the application, and confirm that your sample application is deployed from GitHub.</p>
+</li>
+<li>
+<p>Modify the sample application code of your forked GitHub repository, and check in the changes.</p>
+</li>
+<li>
+<p>Verify that CodePipeline starts the CI/CD process and deploys your latest code changes to Elastic Beanstalk.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_faq">FAQ</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
+</div>
+<div class="paragraph">
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. This setting is under <strong>Advanced</strong> in the AWS CloudFormation console on the <strong>Configure stack options</strong> page. With this setting, you retain the state of the stack and keep the assets running so that you can troubleshoot the issue.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Delete the stack when you finish troubleshooting.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q.</strong> I encountered a size-limitation error when I deployed the AWS CloudFormation templates.</p>
+</div>
+<div class="paragraph">
+<p><strong>A.</strong> Launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template-size limitations. For more information, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS CloudFormation quotas</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parameter_reference">Parameter reference</h2>
+<div class="sectionbody">
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1323,9 +1326,8 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </tr>
 </table>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_launch_a_cicd_pipeline">Launch a CI/CD pipeline</h3>
+<h3 id="_parameters_for_deploying_the_cicd_pipeline">Parameters for deploying the CI/CD pipeline</h3>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. GitHub configuration</caption>
 <colgroup>
@@ -1344,31 +1346,31 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub repository name
 (<code>GitHubRepositoryName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-microsoft-dotnetcore-cicd</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub repository name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-dotnetcore-cicd</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the GitHub repository that hosts the web application.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Git branch
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub branch name
 (<code>GitHubBranchName</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>master</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub branch name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>main</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the GitHub branch that the CI/CD pipeline will pull from.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub username
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub owner user name
 (<code>GitHubOwner</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UserName for GitHUb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User name for accessing the GitHub repository.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub oauth token
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub OAuth token
 (<code>GitHubOAuthToken</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OAuthToken for GitHUb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OAuth token for accessing the GitHub repository.</p></td>
 </tr>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Elastic Beanstalk configuration</caption>
+<caption class="title">Table 2. AWS Elastic Beanstalk configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -1385,13 +1387,13 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Elastic Beanstalk platform version
 (<code>SolutionStack</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>64bit Amazon Linux 2 v2.0.1 running .NET Core</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The platform version for the .Net Elastic Beantalk environment, please check documentation for latest platform version.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>64bit Amazon Linux 2 v2.1.0 running .NET Core</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Platform version to use for the .NET Core Elastic Beanstalk environment. Enter the latest version. To find the latest version, go to <a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux" class="bare">https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux</a>.</p></td>
 </tr>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. CodeBuild configuration</caption>
+<caption class="title">Table 3. AWS CodeBuild configuration</caption>
 <colgroup>
 <col style="width: 16%;">
 <col style="width: 11%;">
@@ -1406,70 +1408,13 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CodeBuild image
+<td class="tableblock halign-left valign-top"><p class="tableblock">CodeBuild image version
 (<code>CodeBuildImage</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>aws/codebuild/amazonlinux2-x86_64-standard:3.0</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The image version to use for CodeBuild, please check documentation for latest version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker image version to use for CodeBuild. Enter the latest version. To find the latest version, go to <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html" class="bare">https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html</a>.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="olist arabic">
-<ol class="arabic" start="5">
-<li>
-<p>On the options page, you can <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html" target="_blank" rel="noopener">specify tags</a> (key-value pairs) for resources in your stack and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html" target="_blank" rel="noopener">set advanced options</a>. When you’re done, choose <strong>Next</strong>.</p>
-</li>
-<li>
-<p>On the <strong>Review</strong> page, review and confirm the template settings. Under <strong>Capabilities</strong>, select the two check boxes to acknowledge that the template creates IAM resources and might require the ability to automatically expand macros.</p>
-</li>
-<li>
-<p>Choose <strong>Create stack</strong> to deploy the stack.</p>
-</li>
-<li>
-<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the DotNet Core CI/CD deployment is ready.</p>
-</li>
-<li>
-<p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in figure 2, to view the created resources.</p>
-</li>
-</ol>
-</div>
-<div id="cfn_outputs" class="imageblock">
-<div class="content">
-<img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439">
-</div>
-<div class="title">Figure 2. DotNet Core CI/CD outputs after successful deployment</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_faq">FAQ</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
-</div>
-<div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>No</strong>. (This setting is under <strong>Advanced</strong> in the AWS CloudFormation console, <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Please make sure to delete the stack when you finish troubleshooting.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>For additional information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a> on the AWS website.</p>
-</div>
-<div class="paragraph">
-<p><strong>Q.</strong> I encountered a size limitation error when I deployed the AWS CloudFormation templates.</p>
-</div>
-<div class="paragraph">
-<p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information about AWS CloudFormation quotas, see the <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -1477,7 +1422,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <h2 id="_send_us_feedback">Send us feedback</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To post feedback, submit feature ideas, or report bugs, use the <strong>Issues</strong> section of the <a href="https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd" target="_blank" rel="noopener">GitHub repository</a> for this Quick Start. If you’d like to submit code, please review the <a href="https://aws-quickstart.github.io/" target="_blank" rel="noopener">Quick Start Contributor’s Guide</a>.</p>
+<p>To post feedback, submit feature ideas, or report bugs, use the <strong>Issues</strong> section of the <a href="https://github.com/aws-quickstart/quickstart-dotnetcore-cicd" target="_blank" rel="noopener">GitHub repository</a> for this Quick Start. To submit code, see the <a href="https://aws-quickstart.github.io/" target="_blank" rel="noopener">Quick Start Contributor’s Guide</a>.</p>
 </div>
 </div>
 </div>
@@ -1493,16 +1438,16 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <h2 id="_github_repository">GitHub repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can visit our <a href="https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd" target="_blank" rel="noopener">GitHub repository</a> to download
+<p>Visit our <a href="https://github.com/aws-quickstart/quickstart-dotnetcore-cicd" target="_blank" rel="noopener">GitHub repository</a> to download
 the templates and scripts for this Quick Start, to post your comments,
 and to share your customizations with others.</p>
 </div>
 <hr>
-<div class="paragraph">
-<p>© 2020, Amazon Web Services Inc., or its affiliates, and {partner-company-name}. All rights reserved.</p>
 </div>
-<div class="sect3">
-<h4 id="_notices">Notices</h4>
+</div>
+<div class="sect1">
+<h2 id="_notices">Notices</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>This document is provided for informational purposes only. It represents AWS’s current product offerings and practices as of the date of issue of this document, which are subject to change without notice. Customers are responsible for making their own independent assessment of the information in this document and any use of AWS’s products or services, each of which is provided “as is” without warranty of any kind, whether expressed or implied. This document does not create any warranties, representations, contractual commitments, conditions, or assurances from AWS, its affiliates, suppliers, or licensors. The responsibilities and liabilities of AWS to its customers are controlled by AWS agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers.</p>
 </div>
@@ -1512,11 +1457,10 @@ and to share your customizations with others.</p>
 </div>
 </div>
 </div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2020-08-14 20:06:47 UTC
-</div>
-</div>
+<p class="footer-text">
+<!-- We can use document attributes: -->
+<!-- Generated with Asciidoctor v2.0.10. -->
+<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+</p>
 </body>
 </html>

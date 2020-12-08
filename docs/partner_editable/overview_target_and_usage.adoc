@@ -2,6 +2,6 @@
 // Identify your target audience and explain how/why they would use this Quick Start.
 //Avoid borrowing text from third-party websites (copying text from AWS service documentation is fine). Also, avoid marketing-speak, focusing instead on the technical aspect.
 
-This Quick Start reference deployment guide provides step-by-step instructions for deploying a .NET Core continuous integration (CI) and continuous delivery (CD) pipeline on the AWS Cloud.
+This guide provides instructions for deploying the {partner-product-short-name} Quick Start reference architecture on the AWS Cloud.
 
-The Quick Start is for developers who are looking for a deployment pipeline to implement CI/CD for their .NET Core workloads on AWS. Using this highly scalable solution enables customers to rapidly and reliably deliver features and updates. There are no build servers to manage, and customers only pay for what they use.
+This Quick Start is for developers who are looking to implement an automated continuous integration and continuous delivery (CI/CD) pipeline for their .NET Core applications.
