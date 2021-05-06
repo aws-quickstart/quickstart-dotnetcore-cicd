@@ -12,7 +12,7 @@
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|Elastic Beanstalk platform version
-(`SolutionStack`)|`64bit Amazon Linux 2 v2.1.0 running .NET Core`|Platform version to use for the .NET Core Elastic Beanstalk environment. Enter the latest version. To find the latest version, go to https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux.
+(`SolutionStack`)|`64bit Amazon Linux 2 v2.1.5 running .NET Core`|Platform version to use for the .NET Core Elastic Beanstalk environment. Enter the latest version. To find the latest version, go to https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.dotnetlinux.
 |===
 .AWS CodeBuild configuration
 [width="100%",cols="16%,11%,73%",options="header",]
