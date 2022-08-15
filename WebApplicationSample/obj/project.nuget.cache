@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "I8c6BTZUbJzVZB8mu+IyONF+AY2/3xuxdbSQFLcFDOJJyhXjQDStFBOLaZ+cQquThHMEMGCjT09VMm7IWKzmdw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Otar_Matcharashvili\\Development\\git\\quickstart-dotnetcore-cicd\\WebApplicationSample\\WebApplicationSample.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Otar_Matcharashvili\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\Otar_Matcharashvili\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\Otar_Matcharashvili\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\Otar_Matcharashvili\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.27\\microsoft.netcore.app.host.win-x64.3.1.27.nupkg.sha512"
+  ],
+  "logs": []
+}
