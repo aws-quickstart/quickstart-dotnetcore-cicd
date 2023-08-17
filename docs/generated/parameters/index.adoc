@@ -1,3 +1,0 @@
-
-=== Parameters for deploying the CI/CD pipeline
-include::quickstart-dotnetcore-cicd.template.adoc[]
