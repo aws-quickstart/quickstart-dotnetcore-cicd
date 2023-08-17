@@ -1,3 +1,39 @@
-//Include any predeployment steps here, such as signing up for a Marketplace AMI or making any changes to a partner account. If there are no predeployment steps, leave this file empty.
 
 == Predeployment steps
+
+=== Fork the repository and obtain inputs
+
+The https://github.com/aws-quickstart/quickstart-microsoft-dotnetcore-cicd[{partner-product-name} GitHub repository^] includes the following:
+
+* The AWS CloudFormation template (`quickstart-dotnetcore-cicd.template.yml`)
+* The file used in CodeBuild (`buildspec.yml`)
+* Source code for a sample web application (`WebApplicationSample`)
+
+Fork this GitHub repository. Then, obtain the inputs that you will need during deployment:
+
+[%header,cols=2*]
+|===
+|Input name 
+|Input value
+
+|GitHubOAuthToken
+|
+1. Go to https://github.com/settings/tokens/new.
+
+2. Enter *.NET Core CI/CD* in the *Note* box.
+
+3. Select the *repo* check box.
+
+4. Select the *admin:repo_hook* check box.
+
+5. Choose *Generate token*.
+
+|GitHubOwner
+|Your GitHub login user name.
+
+|GitHubRepositoryName
+|The name of your forked repository.
+
+|GitHubBranchName
+|The branch name that you want to use in your fork to initiate the AWS CodePipeline.
+|===
