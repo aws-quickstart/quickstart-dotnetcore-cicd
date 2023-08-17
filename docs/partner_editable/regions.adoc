@@ -1,5 +1,0 @@
-This Quick Start supports the following Regions:
-
-* us-east-1, US East (N. Virginia)
-* us-west-2, US West (Oregon)
-* eu-west-1, EU West (Europe, Ireland)

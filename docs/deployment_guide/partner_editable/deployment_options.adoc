@@ -1,0 +1,3 @@
+// Edit this placeholder text as necessary to describe the deployment options.
+
+This Partner Solution provides one deployment option: provision the CI/CD assets in your existing AWS infrastructure.

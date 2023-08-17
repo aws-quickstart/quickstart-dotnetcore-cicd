@@ -1,7 +1,0 @@
-// Replace the content in <>
-// Briefly describe the software. Use consistent and clear branding. 
-// Include the benefits of using the software on AWS, and provide details on usage scenarios.
-
-The {partner-product-name} environment manages application updates using AWS CodePipeline, AWS CodeBuild, and AWS CodeDeploy. The CI/CD pipeline polls a GitHub repository for updates. Whenever code is modified within the configured repository branch, the pipeline fetches the latest source code and automatically builds the application. It then deploys the application to an AWS Elastic Beanstalk environment running Amazon Linux 2.
-
-This scalable deployment helps you deliver features and updates rapidly and reliably. You have no build servers to manage, and you pay only for what you use.
